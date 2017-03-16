@@ -1,0 +1,14 @@
+---
+
+- name: Install nginx
+  apt: name=nginx state=present
+
+- name: Set nginx to startup after restart
+  command: update-rc.d nginx defaults
+
+- name: Copy edited nginx.conf file
+  copy: src="{{files_dir}}/nginx.conf" dest="{{nginx}}/nginx.conf"
+
+- name: Copy edited nginx defaults file
+  template: src={{templates_dir}}/default.j2 dest={{nginx}}/sites-available/default
+  notify: restart nginx

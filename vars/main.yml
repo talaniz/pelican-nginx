@@ -1,0 +1,4 @@
+---
+nginx: /etc/nginx/
+files_dir: ../../../files
+templates_dir: ../../../templates
